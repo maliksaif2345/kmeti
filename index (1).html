@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b2530"><title>Kmeti Khata Nov 2026 – Nov 2027</title>
+<style>
+:root{--bg:#eef3f2;--cd:#fff;--tx:#10242b;--mu:#5d727a;--ac:#0d9488;--go:#d98e04;--bd:#d3e0de;--ok:#15803d;--no:#be123c;color-scheme:light}
+[data-t=dark]{--bg:#081a22;--cd:#0f2832;--tx:#e4f3f1;--mu:#86a4ab;--ac:#2dd4bf;--go:#fbbf24;--bd:#1d3d49;--ok:#4ade80;--no:#fb7185;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+header{display:flex;gap:8px;align-items:center;padding:14px;background:#0b2530;color:#e4f3f1}header h1{font:700 17px/1.2 Georgia,serif;margin:0;flex:1}header small{display:block;font:12px system-ui;color:#86a4ab}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer;border:1px solid var(--bd);background:var(--cd);border-radius:10px;padding:8px 12px}
+.ib{background:#16394a;border-color:#27536a;color:#fff;padding:7px 10px}.pri{background:var(--ac);color:#04201c;border:0;font-weight:700}.wa{background:#25d366;color:#04230f;border:0;font-weight:700}
+main{max-width:980px;margin:auto;padding:12px}.card{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+h2{font:700 16px Georgia,serif;margin:0 0 10px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.stats b{display:block;font:700 22px Georgia,serif;color:var(--go)}.stats span{color:var(--mu);font-size:13px}
+.live{font:700 11px system-ui;padding:3px 8px;border-radius:99px;background:#64748b;color:#fff}.live.on{background:#e11d48;animation:p 1.4s infinite}@keyframes p{50%{opacity:.5}}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>input,.row>select{flex:1;min-width:120px;padding:8px;border:1px solid var(--bd);border-radius:10px;background:var(--bg)}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--bd);padding:6px;text-align:center;white-space:nowrap}th:first-child,td:first-child{position:sticky;left:0;background:var(--cd);text-align:left;font-weight:600}
+td.c{cursor:pointer;user-select:none}.y{color:var(--ok)}.n{color:var(--mu)}.now{background:color-mix(in srgb,var(--go) 18%,transparent)}
+.mem{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}.mem:last-child{border:0}.mem>div:first-child{flex:1}.mem small{color:var(--mu)}
+.bar{height:6px;background:var(--bd);border-radius:9px;margin-top:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.tag{background:var(--go);color:#201500;border-radius:99px;padding:1px 8px;font-size:12px;font-weight:700}
+#ov{position:fixed;inset:0;background:rgba(3,12,16,.94);display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:9;color:#fff;text-align:center;padding:16px}#ov.s{display:flex}
+#wr{position:relative;width:min(80vw,340px);aspect-ratio:1}#wr:before{content:"";position:absolute;top:-8px;left:50%;margin-left:-12px;border:12px solid transparent;border-top:22px solid #fbbf24;z-index:2}
+#cv{width:100%;height:100%;border-radius:50%;box-shadow:0 0 40px #2dd4bf66}#win{font:700 28px Georgia,serif;color:#fbbf24;min-height:40px}
+.cf{position:fixed;top:-20px;font-size:22px;animation:f 3s linear forwards;z-index:10}@keyframes f{to{transform:translateY(110vh) rotate(540deg)}}
+dialog{border:1px solid var(--bd);border-radius:14px;background:var(--cd);color:var(--tx);width:min(92vw,440px)}dialog input{width:100%;padding:8px;margin:4px 0 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg)}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0b2530;color:#fff;padding:10px 16px;border-radius:12px;display:none;z-index:20;max-width:90vw}
+.ro{background:color-mix(in srgb,var(--go) 20%,transparent);padding:8px 12px;border-radius:10px;margin-bottom:12px;font-size:13px;display:none}
+@media print{header button,.row,#ov,.wa{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body>
+<header><div style="flex:1"><h1>Kmeti Khata</h1><small>Nov 2026 – Nov 2027</small></div><span class="live" id="lv">OFFLINE</span>
+<button class="ib" id="bn" title="Alerts">🔔</button><button class="ib" id="th" title="Night mode">🌙</button><button class="ib" id="st" title="Settings">⚙️</button></header>
+<main>
+<div class="ro" id="ro">👀 Viewer mode: aap live qurandazi aur khata dekh sakte hain. Editing sirf admin kar sakta hai.</div>
+<div class="card stats" id="stats"></div>
+<div class="card"><h2>🎲 Digital Qurandazi</h2>
+<div class="row"><select id="dm"></select><button class="pri" id="go">Ek mahine ki draw</button><button class="pri" id="ga">🎰 Saare 10 mahine live</button></div>
+<p style="color:var(--mu);font-size:13px;margin:8px 0 0">Jis member ki jitni committee hain utne hi tickets hain (Mannan sab ke 5, baqi ke 1-1), kul 10. 10 mahine ki 10 draws mein har ticket ek baar jeetta hai. Link khulne wale sab members live dekhte hain.</p>
+<div id="wl" style="margin-top:10px"></div></div>
+<div class="card"><h2>Payment grid</h2><div class="sc"><table id="gr"></table></div><small style="color:var(--mu)">Cell tap karein: ✔ ada / – baqi (sirf admin)</small></div>
+<div class="card"><h2>Members</h2><div class="row" style="margin-bottom:6px"><input id="q" placeholder="🔍 Naam search karein"><button class="pri" id="ad">➕ Member add</button><button class="wa" id="sh">WhatsApp par link share</button><button id="pd">📄 PDF save</button><button id="pp">🖨 PDF print</button><button id="xa">📊 Excel (poora)</button></div><div id="ml"></div></div>
+</main>
+<div id="ov"><div style="font-size:13px;color:#2dd4bf" id="ot"></div><div id="wr"><canvas id="cv" width="680" height="680"></canvas></div><div id="win"></div><div class="row"><button class="wa" id="wsh" style="display:none">Result WhatsApp par bhejein</button><button id="cl">Band karein</button></div></div>
+<dialog id="md"><h3 id="mt" style="margin-top:0"></h3><label>Naam</label><input id="mn"><label>Committee (shares ki tadad)</label><input id="ms" type="number" min="1"><label>WhatsApp number (92300... format)</label><input id="mp" type="tel"><div class="row"><button class="pri" id="mv">Save</button><button onclick="md.close()">Cancel</button></div></dialog>
+<dialog id="dg"><h3 style="margin-top:0">Settings</h3>
+<label>Amount per share (Rs)</label><input id="am" type="number" min="0">
+<label>Firebase Database URL (live ke liye)</label><input id="du" placeholder="https://xxxx-default-rtdb.firebaseio.com">
+<label>Admin key (sirf admin ke phone par)</label><input id="ak" type="password" placeholder="Database secret">
+<div class="row"><button class="pri" id="sv">Save</button><button id="cp">Viewer link copy</button><button id="rs" style="color:var(--no)">Reset draws</button><button onclick="dg.close()">Close</button></div></dialog>
+<div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const $=i=>document.getElementById(i),DM=[["Ahsan sab",1],["Mannan sab",5],["Usman",1],["Irfan",1],["Saif",1],["Danish",1]],E=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+MO=[...Array(13)].map((_,i)=>new Date(2026,10+i,1).toLocaleString("en",{month:"short",year:"2-digit"})),
+DL=k=>new Date(2026,10+Number(k),5).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),CM=Math.min(12,Math.max(0,(new Date().getFullYear()-2026)*12+new Date().getMonth()-10));
+const ls=(k,v)=>v===undefined?localStorage.getItem(k):localStorage.setItem(k,v);
+const hm=location.hash.match(/db=([^&]+)/);if(hm)ls("kdb",decodeURIComponent(hm[1]));
+let MB=[],pt=0,DB=ls("kdb")||"",KEY=ls("kkey")||"",S;try{S=JSON.parse(ls("kdata"))}catch(e){}
+S=S||{amount:2000,paid:{},phones:{},draws:{}};
+const seen={},can=()=>!DB||!!KEY,rs=Rs=>"Rs "+Number(Rs).toLocaleString("en-PK");
+function officialDraws(){const seq=["Irfan","Saif","Mannan sab","Mannan sab","Usman","Mannan sab","Ahsan sab","Mannan sab","Mannan sab","Danish"],pool=DM.flatMap(([n,k])=>Array(k).fill(n)),d={};seq.forEach((nm,m)=>{const idx=pool.indexOf(nm);d[m]={name:nm,tickets:pool.slice(),idx,ts:new Date(2026,10+m,5,12).getTime()};pool.splice(idx,1)});return d}
+const norm=()=>{if(!S.members||!S.members.length)S.members=DM.map(([n,s])=>({n,s}));S.members=Object.values(S.members);MB=S.members.map(m=>[m.n,+m.s]);S.paid=S.paid||{};S.phones=S.phones||{};S.draws=S.draws||{};if((S.v||0)<2)S.amount=2000;if((S.v||0)<4)S.draws=officialDraws();S.v=4;S.amount=S.amount||2000};
+function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(e.t);e.t=setTimeout(()=>e.style.display="none",3500)}
+function notify(t,b){toast(t+" – "+b);if("Notification" in window&&Notification.permission==="granted")try{new Notification(t,{body:b})}catch(e){}}
+function won(n){return Object.values(S.draws).filter(d=>d.name===n).length}
+function tickets(){return MB.flatMap(([n,s])=>Array(Math.max(0,s-won(n))).fill(n))}
+async function push(){norm();ls("kdata",JSON.stringify(S));if(DB&&KEY){try{await fetch(DB+"/kmeti.json?auth="+encodeURIComponent(KEY),{method:"PUT",body:JSON.stringify(S)})}catch(e){toast("Sync nahi hua – internet check karein")}}render()}
+async function pull(){if(!DB)return;try{const d=await(await fetch(DB+"/kmeti.json")).json();if(d){S=d;norm();ls("kdata",JSON.stringify(S));
+ let nm=-1;for(const m in S.draws){if(!seen[m]){seen[m]=1;if(Date.now()-S.draws[m].ts<45000)nm=+m}}if(nm>=0)play(nm,S.draws[nm]);render()}$("lv").textContent="LIVE";$("lv").className="live on"}catch(e){$("lv").textContent="OFFLINE";$("lv").className="live"}}
+function listen(){if(!DB)return;pull();try{const es=new EventSource(DB+"/kmeti.json");es.addEventListener("put",pull);es.addEventListener("patch",pull);es.onerror=()=>{$("lv").className="live";$("lv").textContent="RECONNECT"}}catch(e){}}
+function render(){norm();const tot=MB.reduce((a,m)=>a+m[1],0),q=$("q").value.toLowerCase();
+ const pc=MB.filter(([n])=>S.paid[CM+"|"+n]).length;
+ $("stats").innerHTML=`<div><b>${MB.length}</b><span>Members</span></div><div><b>${tot}</b><span>Total shares</span></div><div><b>${rs(S.amount*tot)}</b><span>Mahana pot</span></div><div><b>${pc}/${MB.length}</b><span>${MO[CM]} ada kiya</span></div><div><b>${tickets().length}</b><span>Tickets baqi</span></div>`;
+ $("ro").style.display=can()?"none":"block";$("ad").style.display=can()?"":"none";
+ $("dm").innerHTML=MO.map((m,i)=>`<option value="${i}" ${i>9?"disabled":""} ${i==CM?"selected":""}>${m}${S.draws[i]?" ✔":""}</option>`).join("");
+ $("gr").innerHTML="<tr><th>Name</th>"+MO.map((m,i)=>`<th class="${i==CM?"now":""}">${m}</th>`).join("")+"</tr>"+MB.map(([n,s])=>`<tr><td>${E(n)} <small class="n">×${s}</small></td>`+MO.map((m,i)=>`<td class="c ${i==CM?"now":""} ${S.paid[i+"|"+n]?"y":"n"}" data-k="${i}|${E(n)}">${S.paid[i+"|"+n]?"✔":"–"}${S.draws[i]&&S.draws[i].name==n?"🏆":""}</td>`).join("")+"</tr>").join("");
+ $("wl").innerHTML=Object.keys(S.draws).sort((a,b)=>a-b).map(m=>`<div class="row" style="padding:4px 0"><span class="tag">${DL(m)}</span> 🏆 <b>${E(S.draws[m].name)}</b> <span style="color:var(--mu)">– ${rs(S.amount*tot)}</span></div>`).join("")||"<span style='color:var(--mu)'>Abhi koi draw nahi hui.</span>";
+ $("ml").innerHTML=MB.map(([n,s],i)=>[n,s,i]).filter(([n])=>n.toLowerCase().includes(q)).map(([n,s,i])=>{const p=MO.filter((m,i)=>S.paid[i+"|"+n]).length,ph=(S.phones[n]||"").replace(/\D/g,"");
+  const msg=encodeURIComponent(`Assalam o Alaikum ${n}, Kmeti ${MO[CM]} (${DL(CM)}) ki installment ${rs(S.amount*s)} abhi baqi hai. Meherbani kar ke ada kar dein. Shukriya 🙏`);
+  return `<div class="mem"><div><b>${i+1}. ${E(n)}</b> <span class="tag">${s} share</span> ${won(n)?`<span class="tag">🏆×${won(n)}</span>`:""}<br><small>Mahana: ${rs(S.amount*s)} · ada ${p}/13</small><div class="bar"><i style="width:${p/13*100}%"></i></div></div>
+  <button data-x="${i}" title="Is member ki Excel">📊</button>${can()?`<button data-e="${i}" title="Edit">✏️</button><button data-d="${i}" title="Delete">🗑</button><a href="https://wa.me/${ph}?text=${msg}" target="_blank" rel="noopener"><button class="wa">Reminder</button></a>`:""}</div>`}).join("")}
+$("gr").onclick=e=>{const c=e.target.closest("td.c");if(!c)return;if(!can())return toast("Sirf admin edit kar sakta hai");S.paid[c.dataset.k]=S.paid[c.dataset.k]?0:1;push()};
+let ei=-1;
+function openM(i){if(!can())return toast("Sirf admin edit kar sakta hai");ei=i;const m=S.members[i]||{n:"",s:1};$("mt").textContent=i<0?"Naya member":"Member edit";$("mn").value=m.n;$("ms").value=m.s;$("mp").value=S.phones[m.n]||"";$("md").showModal()}
+const nk=k=>k.slice(k.indexOf("|")+1);
+$("mv").onclick=()=>{const n=$("mn").value.trim(),sh=Math.max(1,parseInt($("ms").value)||1),ph=$("mp").value.trim();if(!n)return toast("Naam likhein");
+ if(S.members.some((m,i)=>i!==ei&&m.n.toLowerCase()==n.toLowerCase()))return toast("Yeh naam pehle se hai");
+ if(ei<0)S.members.push({n,s:sh});else{const o=S.members[ei].n;if(o!==n){for(const k in S.paid)if(nk(k)===o){S.paid[k.split("|")[0]+"|"+n]=S.paid[k];delete S.paid[k]}
+  for(const m in S.draws){const d=S.draws[m];if(d.name===o)d.name=n;d.tickets=d.tickets.map(x=>x===o?n:x)}delete S.phones[o]}S.members[ei]={n,s:sh}}
+ S.phones[n]=ph;$("md").close();push()};
+function delM(i){if(!can())return toast("Sirf admin edit kar sakta hai");const n=S.members[i].n;if(S.members.length<2)return toast("Kam az kam 1 member zaroori hai");
+ if(!confirm(n+" ko delete karein? Iska payment record hat jayega."+(won(n)?" Jeeti hui draw history rahegi.":"")))return;
+ S.members.splice(i,1);for(const k in S.paid)if(nk(k)===n)delete S.paid[k];delete S.phones[n];push()}
+$("ml").onclick=e=>{const b=e.target.closest("[data-e],[data-d],[data-x]");if(!b)return;const D=b.dataset;D.x!==undefined?xlsx(+D.x):D.e!==undefined?openM(+D.e):delM(+D.d)};
+$("ad").onclick=()=>openM(-1);
+const tot=()=>MB.reduce((a,m)=>a+m[1],0),wins=n=>Object.keys(S.draws).filter(m=>S.draws[m].name===n).map(Number);
+function rows(){return MB.map(([n,s],i)=>{const due=S.amount*s,pm=MO.filter((_,k)=>S.paid[k+"|"+n]).length,w=wins(n);return{i:i+1,n,s,ph:S.phones[n]||"",due,pm,paid:pm*due,bal:(13-pm)*due,w:w.map(k=>MO[k]).join(", "),pay:w.length*S.amount*tot()}})}
+function mkPdf(){if(!window.jspdf){toast("PDF library load nahi hui – internet check karein");return null}
+ const d=new window.jspdf.jsPDF({orientation:"landscape",unit:"pt",format:"a4"}),hd={fillColor:[13,148,136]};
+ d.setFontSize(16);d.text("Kmeti Khata  Nov 2026 - Nov 2027",40,40);d.setFontSize(10);d.text(`Per share: ${rs(S.amount)}   Monthly pot: ${rs(S.amount*tot())}   Date: ${new Date().toLocaleDateString("en-GB")}`,40,58);
+ d.autoTable({startY:70,head:[["Sr","Name","Shares","Phone","Monthly","Paid months","Paid Rs","Balance Rs","Draw won"]],body:rows().map(r=>[r.i,r.n,r.s,r.ph,r.due,r.pm+"/13",r.paid,r.bal,r.w||"-"]),styles:{fontSize:9},headStyles:hd});
+ d.autoTable({startY:d.lastAutoTable.finalY+18,head:[["Name",...MO]],body:MB.map(([n])=>[n,...MO.map((_,k)=>(S.paid[k+"|"+n]?"Paid":"-")+(S.draws[k]&&S.draws[k].name===n?" *":""))]),styles:{fontSize:7,halign:"center"},headStyles:hd,foot:[["* = qurandazi winner"]]});
+ const ks=Object.keys(S.draws).sort((a,b)=>a-b);if(ks.length)d.autoTable({startY:d.lastAutoTable.finalY+18,head:[["Date","Winner","Payout"]],body:ks.map(k=>[DL(k),S.draws[k].name,rs(S.amount*tot())]),styles:{fontSize:9},headStyles:hd});
+ return d}
+$("pd").onclick=()=>{const d=mkPdf();if(d){d.save("Kmeti_Khata.pdf");toast("PDF save ho gayi ✔")}};
+$("pp").onclick=()=>{const d=mkPdf();if(!d)return;d.autoPrint();if(!window.open(d.output("bloburl"),"_blank"))toast("Popup block hai – allow karein ya pehle PDF save karein")};
+const cf=(f,v)=>({t:"n",f,v});
+function personAOA(n,s){const due=S.amount*s,w=wins(n),pot=S.amount*tot(),a=[["Kmeti Khata Nov 2026 - Nov 2027"],["Name",n],["Shares",s],["Phone",S.phones[n]||""],["Monthly due",due],["Payout per win",pot],[],["Date","Due","Paid amount","Balance","Status","Draw result","Payout"]];
+ let tp=0,tw=0;MO.forEach((m,k)=>{const p=S.paid[k+"|"+n]?due:0,x=a.length+1,wn=w.includes(k);tp+=p;tw+=wn?pot:0;a.push([DL(k),due,p,cf(`B${x}-C${x}`,due-p),p?"Paid":"Pending",wn?"WON":"",wn?pot:0])});
+ const l=a.length;a.push(["Total",cf(`SUM(B9:B${l})`,due*13),cf(`SUM(C9:C${l})`,tp),cf(`SUM(D9:D${l})`,due*13-tp),"","",cf(`SUM(G9:G${l})`,tw)]);return a}
+function xlsx(i){if(!window.XLSX)return toast("Excel library load nahi hui – internet check karein");const U=XLSX.utils,wb=U.book_new(),W=(ws,c)=>{ws["!cols"]=c.map(x=>({wch:x}));return ws},sn=(n,k)=>((k+1)+" "+n.replace(/[\\\/?*\[\]:]/g,"")).slice(0,31);
+ if(i===undefined){const R=rows(),sm=[["Sr","Name","Shares","Phone","Monthly due","Paid months","Paid amount","Balance (13 mahine)","Draw won","Payout total"]];
+  R.forEach((r,k)=>sm.push([r.i,r.n,r.s,r.ph,r.due,r.pm,r.paid,r.bal,r.w,r.pay]));
+  U.book_append_sheet(wb,W(U.aoa_to_sheet(sm),[5,18,8,16,12,12,13,18,22,13]),"Summary");
+  const g=[["Name","Shares","Monthly due",...MO,"Total paid"]];MB.forEach(([n,sh],k)=>{const due=S.amount*sh,x=k+2;g.push([n,sh,due,...MO.map((_,m)=>S.paid[m+"|"+n]?due:0),cf(`SUM(D${x}:P${x})`,MO.filter((_,m)=>S.paid[m+"|"+n]).length*due)])});
+  U.book_append_sheet(wb,W(U.aoa_to_sheet(g),[18,8,12,...MO.map(()=>9),12]),"Payment Grid");
+  const ds=[["Date","Winner","Payout"]];Object.keys(S.draws).sort((a,b)=>a-b).forEach(k=>ds.push([DL(k),S.draws[k].name,S.amount*tot()]));
+  U.book_append_sheet(wb,W(U.aoa_to_sheet(ds),[10,18,12,22]),"Draws");
+  MB.forEach(([n,sh],k)=>U.book_append_sheet(wb,W(U.aoa_to_sheet(personAOA(n,sh)),[16,12,13,12,10,12,12]),sn(n,k)));
+  XLSX.writeFile(wb,"Kmeti_Khata_Complete.xlsx")}
+ else{const[n,sh]=MB[i];U.book_append_sheet(wb,W(U.aoa_to_sheet(personAOA(n,sh)),[16,12,13,12,10,12,12]),sn(n,i));XLSX.writeFile(wb,"Kmeti_"+n.replace(/[^\w]+/g,"_")+".xlsx")}
+ toast("Excel save ho gayi ✔")}
+$("xa").onclick=()=>xlsx();
+$("q").oninput=render;
+const cv=$("cv"),cx=cv.getContext("2d");
+function wheel(t){const n=t.length,a=2*Math.PI/n,R=340,c={},tc={};t.forEach(x=>tc[x]=(tc[x]||0)+1);cx.clearRect(0,0,680,680);t.forEach((nm,i)=>{cx.beginPath();cx.moveTo(R,R);cx.arc(R,R,R-4,-Math.PI/2+i*a,-Math.PI/2+(i+1)*a);cx.fillStyle=`hsl(${i*360/n},65%,${i%2?42:50}%)`;cx.fill();cx.strokeStyle="#0b2530";cx.lineWidth=3;cx.stroke();
+ cx.save();cx.translate(R,R);cx.rotate(-Math.PI/2+(i+.5)*a);cx.fillStyle="#fff";cx.font="bold 34px system-ui";cx.textAlign="right";c[nm]=(c[nm]||0)+1;cx.fillText(nm.slice(0,10)+(tc[nm]>1?" #"+c[nm]:""),R-30,12);cx.restore()});}
+function play(m,d){const tk=++pt,o=$("ov");o.classList.add("s");$("ot").textContent="🔴 LIVE · "+MO[m]+" ki qurandazi";$("win").textContent="Ghoom raha hai…";$("wsh").style.display="none";
+ wheel(d.tickets);cv.style.transition="none";cv.style.transform="rotate(0)";cv.offsetWidth;const n=d.tickets.length;
+ cv.style.transition="transform 7s cubic-bezier(.12,.6,.1,1)";cv.style.transform=`rotate(${360*7-(d.idx+.5)*360/n}deg)`;
+ setTimeout(()=>{if(tk!==pt)return;$("win").textContent="🏆 "+d.name;$("wsh").style.display="";$("wsh").onclick=()=>open("https://wa.me/?text="+encodeURIComponent(`🏆 Kmeti ${MO[m]} ki qurandazi ka nateeja: ${d.name} (${rs(S.amount*MB.reduce((a,x)=>a+x[1],0))})`));
+  for(let i=0;i<40;i++){const s=document.createElement("span");s.className="cf";s.textContent=["🎉","✨","🏆","🎊"][i%4];s.style.left=Math.random()*100+"vw";s.style.animationDelay=Math.random()+"s";document.body.append(s);setTimeout(()=>s.remove(),4500)}
+  notify("Kmeti "+MO[m]+" – winner",d.name);render()},7300)}
+$("cl").onclick=()=>$("ov").classList.remove("s");
+function doDraw(m){const t=tickets(),d={idx:crypto.getRandomValues(new Uint32Array(1))[0]%t.length,tickets:t,ts:Date.now()};d.name=t[d.idx];S.draws[m]=d;seen[m]=1;push();play(m,d)}
+$("go").onclick=()=>{if(!can())return toast("Sirf admin qurandazi shuru kar sakta hai");const m=+$("dm").value;if(m>9)return toast("Qurandazi sirf pehle 10 mahine ki hoti hai");if(S.draws[m])return toast("Is mahine ki draw ho chuki hai");if(!tickets().length)return toast("Sab tickets nikal chuke hain");doDraw(m)};
+$("ga").onclick=async()=>{if(!can())return toast("Sirf admin qurandazi shuru kar sakta hai");if(!confirm("Baqi mahino ki draw ek ke baad ek live hogi. Shuru karein?"))return;for(let m=0;m<10;m++){if(S.draws[m])continue;if(!tickets().length)break;doDraw(m);await new Promise(r=>setTimeout(r,10500))}};
+$("th").onclick=()=>{const d=document.documentElement.dataset.t=document.documentElement.dataset.t=="dark"?"light":"dark";ls("kt",d);$("th").textContent=d=="dark"?"☀️":"🌙"};
+{const t=ls("kt")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.dataset.t=t;$("th").textContent=t=="dark"?"☀️":"🌙"}
+$("bn").onclick=async()=>{if(!("Notification" in window))return toast("Is browser mein notifications nahi hain");const p=await Notification.requestPermission();toast(p=="granted"?"Alerts on ✔":"Alerts block hain")};
+const link=()=>location.href.split("#")[0]+(DB?"#db="+encodeURIComponent(DB):"");
+$("sh").onclick=()=>open("https://wa.me/?text="+encodeURIComponent("Kmeti Khata aur live qurandazi yahan dekhein: "+link()));
+$("st").onclick=()=>{$("am").value=S.amount;$("du").value=DB;$("ak").value=KEY;$("dg").showModal()};
+$("sv").onclick=()=>{S.amount=+$("am").value||2000;DB=$("du").value.trim().replace(/\/$/,"");KEY=$("ak").value.trim();ls("kdb",DB);ls("kkey",KEY);$("dg").close();push().then(()=>location.reload())};
+$("cp").onclick=()=>navigator.clipboard.writeText(link()).then(()=>toast("Viewer link copy ho gaya"));
+$("rs").onclick=()=>{if(can()&&confirm("Saari draws reset karein?")){S.draws={};push()}};
+render();listen();
+if(can()&&"Notification" in window&&Notification.permission==="granted"&&ls("kn")!=new Date().toDateString()){const u=MB.filter(([n])=>!S.paid[CM+"|"+n]).length;if(u){notify("Kmeti reminder",u+" members ka "+MO[CM]+" ka hissa baqi hai");ls("kn",new Date().toDateString())}}
+</script></body></html>
