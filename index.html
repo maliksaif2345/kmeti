@@ -21,6 +21,7 @@ td.c{cursor:pointer;user-select:none}.y{color:var(--ok)}.n{color:var(--mu)}.now{
 .cf{position:fixed;top:-20px;font-size:22px;animation:f 3s linear forwards;z-index:10}@keyframes f{to{transform:translateY(110vh) rotate(540deg)}}
 dialog{border:1px solid var(--bd);border-radius:14px;background:var(--cd);color:var(--tx);width:min(92vw,440px)}dialog input{width:100%;padding:8px;margin:4px 0 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg)}
 #toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0b2530;color:#fff;padding:10px 16px;border-radius:12px;display:none;z-index:20;max-width:90vw}
+.pn{background:color-mix(in srgb,var(--no) 14%,transparent);border:1px solid var(--no);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:14px}
 .ro{background:color-mix(in srgb,var(--go) 20%,transparent);padding:8px 12px;border-radius:10px;margin-bottom:12px;font-size:13px;display:none}
 @media print{header button,.row,#ov,.wa{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body>
@@ -28,10 +29,12 @@ dialog{border:1px solid var(--bd);border-radius:14px;background:var(--cd);color:
 <button class="ib" id="bn" title="Alerts">🔔</button><button class="ib" id="th" title="Night mode">🌙</button><button class="ib" id="st" title="Settings">⚙️</button></header>
 <main>
 <div class="ro" id="ro">👀 Viewer mode: you can watch the live draw and the accounts. Only the admin can edit.</div>
+<div class="card" style="text-align:center;font-weight:700">📅 Last date of deposit: 5th of every month</div>
+<div id="pend"></div>
 <div class="card stats" id="stats"></div>
 <div class="card"><h2>🎲 Digital Draw</h2>
 <div class="row"><select id="dm"></select><button class="pri" id="go">Draw for one month</button><button class="pri" id="ga">🎰 All 10 months live</button></div>
-<p style="color:var(--mu);font-size:13px;margin:8px 0 0">Each member has 1 committee = 1 ticket, 10 members and 10 tickets in total. Over the 10 monthly draws, every ticket wins once. Everyone who opens the link watches the draw live.</p>
+<p style="color:var(--mu);font-size:13px;margin:8px 0 0">Each member has 1 committee = 1 ticket, 10 members and 10 tickets in total. Over the 10 monthly draws, every ticket wins once. The draw is held on the 5th of every month. Everyone who opens the link watches the draw live.</p>
 <div id="wl" style="margin-top:10px"></div></div>
 <div class="card"><h2>Payment grid</h2><div class="sc"><table id="gr"></table></div><small style="color:var(--mu)">Tap a cell: ✔ paid / – unpaid (admin only)</small></div>
 <div class="card" id="pc"><h2>📸 Add payment screenshot</h2><div class="row"><select id="pm"></select><input id="pa" type="number" min="1" placeholder="Amount Rs"><input id="pdt" type="date"></div><div class="row" style="margin-top:8px"><select id="pmo"></select></div><div class="row" style="margin-top:8px"><input id="pf" type="file" accept="image/*"><button class="pri" id="ps">➕ Add payment</button></div><small style="color:var(--mu)">Pick the WhatsApp group screenshot from your gallery and check the amount and date. It will be added to the member's account.</small></div>
@@ -51,7 +54,7 @@ dialog{border:1px solid var(--bd);border-radius:14px;background:var(--cd);color:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 const $=i=>document.getElementById(i),DM=[["Ahsan sab",1],...[1,2,3,4,5].map(i=>["Mannan Sahb "+i,1]),["Usman",1],["Irfan",1],["Saif",1],["Danish",1]],E=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
-MO=[...Array(10)].map((_,i)=>new Date(2026,10+i,1).toLocaleString("en",{month:"short",year:"2-digit"})),
+MO=[...Array(10)].map((_,i)=>new Date(2026,10+i,1).toLocaleString("en",{month:"short",year:"numeric"})),
 DL=k=>new Date(2026,10+Number(k),5).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),CM=Math.min(9,Math.max(0,(new Date().getFullYear()-2026)*12+new Date().getMonth()-10));
 const ls=(k,v)=>v===undefined?localStorage.getItem(k):localStorage.setItem(k,v);
 const hm=location.hash.match(/db=([^&]+)/);if(hm)ls("kdb",decodeURIComponent(hm[1]));
@@ -68,13 +71,14 @@ function won(n){return Object.values(S.draws).filter(d=>d.name===n).length}
 function tickets(){return MB.flatMap(([n,s])=>Array(Math.max(0,s-won(n))).fill(n))}
 async function push(){norm();ls("kdata",JSON.stringify(S));if(DB&&KEY){try{await fetch(DB+"/kmeti.json?auth="+encodeURIComponent(KEY),{method:"PUT",body:JSON.stringify(S)})}catch(e){toast("Sync failed - check your internet")}}render()}
 async function pull(){if(!DB)return;try{const d=await(await fetch(DB+"/kmeti.json")).json();if(d){S=d;norm();if(MIG&&KEY){MIG=0;push()}ls("kdata",JSON.stringify(S));
- let nm=-1;for(const m in S.draws){if(!seen[m]){seen[m]=1;{const ag=Date.now()-S.draws[m].ts;if(ag>=0&&ag<45000)nm=+m}}}if(nm>=0)play(nm,S.draws[nm]);render()}$("lv").textContent="LIVE";$("lv").className="live on"}catch(e){$("lv").textContent="OFFLINE";$("lv").className="live"}}
+ let nm=-1;for(const m in S.draws){if(!seen[m]){seen[m]=1;{const ag=Date.now()-S.draws[m].ts;if(ag>=0&&ag<45000)nm=+m}}}if(nm>=0)play(nm,S.draws[nm]);render();dn()}$("lv").textContent="LIVE";$("lv").className="live on"}catch(e){$("lv").textContent="OFFLINE";$("lv").className="live"}}
 function listen(){if(!DB)return;pull();try{const es=new EventSource(DB+"/kmeti.json");es.addEventListener("put",pull);es.addEventListener("patch",pull);es.onerror=()=>{$("lv").className="live";$("lv").textContent="RECONNECT"}}catch(e){}}
 function render(){norm();const tot=MB.reduce((a,m)=>a+m[1],0),q=$("q").value.toLowerCase();
  const pc=MB.filter(([n])=>S.paid[CM+"|"+n]).length,TJ=MB.reduce((a,[n,s])=>a+jama(n,s),0);
  $("stats").innerHTML=`<div><b>${MB.length}</b><span>Members</span></div><div><b>${tot}</b><span>Total shares</span></div><div><b>${rs(S.amount*tot)}</b><span>Monthly pot</span></div><div><b>${pc}/${MB.length}</b><span>${MO[CM]} paid</span></div><div><b>${tickets().length}</b><span>Tickets left</span></div><div><b>${rs(TJ)}</b><span>Total collected</span></div><div><b>${rs(Math.max(0,S.amount*tot*10-TJ))}</b><span>Remaining of ${rs(S.amount*tot*10)}</span></div>`;
- $("ro").style.display=can()?"none":"block";$("ad").style.display=can()?"":"none";$("pc").style.display=can()?"":"none";fillPay();
- $("dm").innerHTML=MO.map((m,i)=>`<option value="${i}" ${i>9?"disabled":""} ${i==CM?"selected":""}>${m}${S.draws[i]?" ✔":""}</option>`).join("");
+ $("ro").style.display=can()?"none":"block";const PR=pending();$("pend").innerHTML=PR.length?`<div class="pn"><b>⚠️ Pending committee</b>${PR.map(r=>`<div style="margin-top:6px"><b>${MO[r.k]}</b> (last date ${DL(r.k)}): ${E(r.nm.join(", "))}</div>`).join("")}${can()?`<button class="wa" id="pw" style="margin-top:8px">Share pending list on WhatsApp</button>`:""}</div>`:"";
+ $("ad").style.display=can()?"":"none";$("pc").style.display=can()?"":"none";fillPay();
+ $("dm").innerHTML=MO.map((m,i)=>`<option value="${i}" ${i>9?"disabled":""} ${i==CM?"selected":""}>${DL(i)}${S.draws[i]?" ✔":""}</option>`).join("");
  $("gr").innerHTML="<tr><th>Name</th>"+MO.map((m,i)=>`<th class="${i==CM?"now":""}">${m}</th>`).join("")+"</tr>"+MB.map(([n,s])=>`<tr><td>${E(n)} <small class="n">×${s}</small></td>`+MO.map((m,i)=>`<td class="c ${i==CM?"now":""} ${S.paid[i+"|"+n]?"y":"n"}" data-k="${i}|${E(n)}">${S.paid[i+"|"+n]?"✔":"–"}${S.draws[i]&&S.draws[i].name==n?"🏆":""}</td>`).join("")+"</tr>").join("");
  $("wl").innerHTML=Object.keys(S.draws).sort((a,b)=>a-b).map(m=>`<div class="row" style="padding:4px 0"><span class="tag">${DL(m)}</span> 🏆 <b>${E(S.draws[m].name)}</b> <span style="color:var(--mu)">– ${rs(S.amount*tot)}</span></div>`).join("")||"<span style='color:var(--mu)'>No draw has been held yet.</span>";
  $("ml").innerHTML=MB.map(([n,s],i)=>[n,s,i]).filter(([n])=>n.toLowerCase().includes(q)).map(([n,s,i])=>{const j=jama(n,s),p=MO.filter((m,i)=>S.paid[i+"|"+n]).length,ph=(S.phones[n]||"").replace(/\D/g,"");
@@ -166,6 +170,10 @@ $("eas").onclick=()=>{const n=S.members[ai].n,B=$("eab");
  S.pay=S.pay.filter(e=>!adel.has(e.id));
  B.querySelectorAll("[data-m]").forEach(c=>{if(c.disabled)return;const k=c.dataset.m+"|"+n,d=B.querySelector(`[data-md="${c.dataset.m}"]`).value,o=S.paid[k];S.paid[k]=c.checked?(d||(typeof o==="string"?o:td())):0});
  $("ea").close();push();toast(n+": account updated ✔")};
+function pending(){const t=Date.now(),R=[];MO.forEach((m,k)=>{if(t>new Date(2026,10+k,5,23,59,59).getTime()){const nm=MB.filter(([n])=>!S.paid[k+"|"+n]).map(x=>x[0]);if(nm.length)R.push({k,nm})}});return R}
+const ptext=R=>R.map(r=>"⚠️ Pending committee for "+MO[r.k]+" (last date "+DL(r.k)+"): "+r.nm.join(", ")).join("\n");
+function dn(){const R=pending();if(R.length&&"Notification" in window&&Notification.permission==="granted"&&ls("kn")!=new Date().toDateString()){notify("Kmeti - pending committee",R.map(r=>MO[r.k]+": "+r.nm.join(", ")).join(" | "));ls("kn",new Date().toDateString())}}
+$("pend").onclick=e=>{if(e.target.id==="pw")open("https://wa.me/?text="+encodeURIComponent(ptext(pending())+"\nPlease deposit as soon as possible. "+link()))};
 $("q").oninput=render;
 const cv=$("cv"),cx=cv.getContext("2d");
 function wheel(t){const n=t.length,a=2*Math.PI/n,R=340,c={},tc={};t.forEach(x=>tc[x]=(tc[x]||0)+1);cx.clearRect(0,0,680,680);t.forEach((nm,i)=>{cx.beginPath();cx.moveTo(R,R);cx.arc(R,R,R-4,-Math.PI/2+i*a,-Math.PI/2+(i+1)*a);cx.fillStyle=`hsl(${i*360/n},65%,${i%2?42:50}%)`;cx.fill();cx.strokeStyle="#0b2530";cx.lineWidth=3;cx.stroke();
@@ -190,5 +198,5 @@ $("sv").onclick=()=>{S.amount=+$("am").value||2000;DB=$("du").value.trim().repla
 $("cp").onclick=()=>navigator.clipboard.writeText(link()).then(()=>toast("Viewer link copied"));
 $("rs").onclick=()=>{if(can()&&confirm("Reset all draws?")){S.draws={};push()}};
 render();listen();
-if(can()&&"Notification" in window&&Notification.permission==="granted"&&ls("kn")!=new Date().toDateString()){const u=MB.filter(([n])=>!S.paid[CM+"|"+n]).length;if(u){notify("Kmeti reminder",u+" members have not paid for "+MO[CM]);ls("kn",new Date().toDateString())}}
+dn();
 </script></body></html>
